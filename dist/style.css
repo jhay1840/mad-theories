@@ -3,10 +3,34 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: "helveticaregular";
+  src: url("/static/fonts/helvetica-webfont.woff2") format("woff2"),
+    url("/static/fonts/helvetica-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "helveticabold";
+  src: url("/static/fonts/helvetica-bold-webfont.woff2") format("woff2"),
+    url("/static/fonts/helvetica-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "helvetica-lightregular";
+  src: url("/static/fonts/helvetica_light-webfont.woff2") format("woff2"),
+    url("/static/fonts/helvetica_light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 html,
 body {
   height: 100vh;
-  font-family: "Roboto", sans-serif;
+  /* font-family: "Roboto", sans-serif; */
+  font-family: "helvetica-lightregular";
 }
 
 .webgl {
@@ -33,7 +57,7 @@ section {
 .banner-container h1 {
   font-size: 90px;
   font-weight: 400;
-
+  font-family: "helvetica-lightregular";
   text-align: center;
 }
 
