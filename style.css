@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "helveticaregular";
+  src: url("/static/fonts/helvetica-webfont.woff2") format("woff2"),
+    url("/static/fonts/helvetica-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "helveticabold";
+  src: url("/static/fonts/helvetica-bold-webfont.woff2") format("woff2"),
+    url("/static/fonts/helvetica-bold-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "helvetica-lightregular";
+  src: url("/static/fonts/helvetica_light-webfont.woff2") format("woff2"),
+    url("/static/fonts/helvetica_light-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html,
+body {
+  height: 100vh;
+  /* font-family: "Roboto", sans-serif; */
+  font-family: "helvetica-lightregular";
+}
+
+.webgl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  outline: none;
+}
+section {
+  height: 100vh;
+  position: relative;
+  z-index: 0;
+}
+
+/* banner section   */
+
+.banner-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: #fff;
+}
+.banner-container h1 {
+  font-size: 90px;
+  font-weight: 400;
+  font-family: "helvetica-lightregular";
+  text-align: center;
+}
+
+.banner-container {
+  position: relative;
+}
+.west,
+.east,
+.south {
+  position: absolute;
+  color: #6a6a6a;
+  font-size: 20px;
+
+  font-weight: 300;
+  width: 50px;
+  height: 50px;
+  border: 1px solid;
+  border-radius: 50%;
+  line-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+}
+.west {
+  left: 65px;
+}
+.south {
+  bottom: 20px;
+}
+.east {
+  right: 65px;
+}
+.bannet-text {
+  position: absolute;
+  bottom: 2%;
+  right: 10%;
+}
+.bannet-text p {
+  font-size: 30px;
+  max-width: 560px;
+  font-weight: 300;
+}
