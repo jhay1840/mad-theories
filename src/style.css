@@ -97,8 +97,16 @@ section {
   bottom: 2%;
   right: 4vw;
 }
-.bannet-text p {
+.bannet-text p,
+.second-section-text p {
   font-size: 30px;
   max-width: 560px;
   font-weight: 300;
+  color: #fff;
+}
+
+.second-section-text {
+  position: absolute;
+  bottom: 5%;
+  left: 4vw;
 }

@@ -123,7 +123,7 @@ const action = () => {
       let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
       cloud.position.set(
         Math.random() * (4 - 25) + 25,
-        -7,
+        -12,
         Math.random() * (-5 - -15) + -15
       );
 
@@ -205,10 +205,10 @@ document.onmousemove = function (e) {
   circle.position.x = -1 * (e.clientX - centerX) * mouseTolerance;
 };
 
-gui.add(camera.position, "y").min(-5).max(10);
-gui.add(camera.position, "x").min(-5).max(10);
+// gui.add(camera.position, "y").min(-5).max(10);
+// gui.add(camera.position, "x").min(-5).max(10);
 
-gui.add(planet.position, "y").min(-50).max(50);
+// gui.add(planet.position, "y").min(-50).max(50);
 
 window.addEventListener("wheel", onMouseWheel);
 let y = 0;
@@ -230,14 +230,14 @@ const tick = () => {
 
   position += y;
   y *= 0.9;
-  console.log(position);
+
   if (position < 0) {
     camera.position.y = position;
   } else {
     position = 0;
   }
-  if (position <= -30) {
-    position = -30;
+  if (position <= -40) {
+    position = -40;
   }
   cloudParticles.forEach((p) => {
     p.rotation.z -= 0.001;
