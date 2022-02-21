@@ -60,17 +60,19 @@ const camera = new THREE.PerspectiveCamera(
 );
 camera.position.x = 0;
 camera.position.y = 0;
-camera.position.z = 2;
+camera.position.z = 10;
 scene.add(camera);
 
 // -----------------------------------------------------------------------objects-----------------------------------------------
 
 // New object sun
-let circleGeo = new THREE.CircleGeometry(1.2, 32);
+let circleGeo = new THREE.CircleGeometry(8, 32);
 let circleMat = new THREE.MeshBasicMaterial({ color: 0xffccaa });
 let circle = new THREE.Mesh(circleGeo, circleMat);
-circle.position.set(0, 3, -3);
+circle.position.set(0, 28, -30);
+
 scene.add(circle);
+
 // post processing for the sun
 let godraysEffect = new POSTPROCESSING.GodRaysEffect(camera, circle, {
   resolutionScale: 1,
@@ -91,7 +93,7 @@ function animate() {
 }
 
 // New object planet
-let planetGeo = new THREE.CircleGeometry(1.4, 32);
+let planetGeo = new THREE.CircleGeometry(8, 40);
 // const planetTexture = new THREE.TextureLoader().load(
 //   "textures/dark_globe.jpg"
 // );
@@ -101,7 +103,7 @@ let planetMat = new THREE.MeshBasicMaterial({
   // color: 0x000000,
 });
 let planet = new THREE.Mesh(planetGeo, planetMat);
-planet.position.set(0, 0.8, -2);
+planet.position.set(0, 10, -18);
 scene.add(planet);
 
 // clouds
@@ -111,7 +113,7 @@ let cloudGeo,
 const action = () => {
   let loader = new THREE.TextureLoader();
   loader.load("textures/smoke-1.png", function (texture) {
-    cloudGeo = new THREE.PlaneBufferGeometry(100, 100);
+    cloudGeo = new THREE.PlaneBufferGeometry(13, 13);
     cloudMaterial = new THREE.MeshLambertMaterial({
       map: texture,
       transparent: true,
@@ -120,9 +122,9 @@ const action = () => {
     for (let p = 0; p < 100; p++) {
       let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
       cloud.position.set(
-        Math.random() * (300 - 11) + 11,
-        -66,
-        Math.random() * (-150 - -400) + -400
+        Math.random() * (4 - 25) + 25,
+        -7,
+        Math.random() * (-5 - -15) + -15
       );
 
       cloud.rotation.z = Math.random() * 360;
@@ -134,12 +136,11 @@ const action = () => {
     for (let p = 0; p < 50; p++) {
       let cloud = new THREE.Mesh(cloudGeo, cloudMaterial);
       cloud.position.set(
-        Math.random() * (-119 - -243) + -243,
-        -28,
-        Math.random() * (-150 - -400) + -400
+        Math.random() * (-11 - -31) + -31,
+        -2.5,
+        Math.random() * (-5 - -15) + -15
       );
-
-      cloud.rotation.z = Math.random() * 2 * Math.PI;
+      cloud.rotation.z = Math.random() * 360;
 
       cloud.material.opacity = 0.55;
       cloudParticles.push(cloud);
@@ -189,28 +190,31 @@ scene.add(pointLight);
 // const controls = new OrbitControls(camera, canvas);
 // controls.enableDamping = true;
 
-var mouseTolerance = 0.0001;
-var mouseTolerance2 = 0.0003;
-var mouseTolerance3 = 0.0008;
+var mouseTolerance = 0.001;
+var mouseTolerance2 = 0.003;
+var mouseTolerance3 = 0.008;
 
 document.onmousemove = function (e) {
   var centerX = window.innerWidth * 0.5;
   var centerY = window.innerHeight * 0.5;
 
   planet.position.x = (e.clientX - centerX) * mouseTolerance2;
-  planet.position.y = 0.8 + -1 * (e.clientY - centerY) * mouseTolerance3;
-  circle.position.y = 3 + (e.clientY - centerY) * mouseTolerance3;
+  planet.position.y = 10 + -1 * (e.clientY - centerY) * mouseTolerance3;
+  circle.position.y = 28 + (e.clientY - centerY) * mouseTolerance3;
 
   circle.position.x = -1 * (e.clientX - centerX) * mouseTolerance;
 };
 
 gui.add(camera.position, "y").min(-5).max(10);
 gui.add(camera.position, "x").min(-5).max(10);
+
+gui.add(planet.position, "y").min(-50).max(50);
+
 window.addEventListener("wheel", onMouseWheel);
 let y = 0;
 let position = 0;
 function onMouseWheel(event) {
-  y = -1 * (event.deltaY * 0.0007);
+  y = -1 * (event.deltaY * 0.008);
 }
 /**
  * Animate
@@ -226,18 +230,19 @@ const tick = () => {
 
   position += y;
   y *= 0.9;
-
+  console.log(position);
   if (position < 0) {
     camera.position.y = position;
   } else {
     position = 0;
   }
-  if (position <= -2) {
-    position = -2;
+  if (position <= -30) {
+    position = -30;
   }
   cloudParticles.forEach((p) => {
     p.rotation.z -= 0.001;
   });
+
   // console.log(planetPos);
 
   // if (planetPos > 2 && planetPos < 2.8) {
